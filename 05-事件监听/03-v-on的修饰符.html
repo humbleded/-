@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <div @click="divClick">
+      aaaaaaa
+      <button @click.stop="btnClick">我是按钮</button>
+    </div>
+
+    <!-- <form action="http://www.baidu.com"> -->
+    <!-- <input type="text" name="username" @keyup="valueChange1"> -->
+    <!-- <input type="submit" @keyup.prevent="valueChange" />
+      <input type="submit" @click.prevent="valueChange"> -->
+    <!-- </form> -->
+
+    <input type="text" name="username" @keyup.enter="valueChange1">
+
+    <button @click.once="btnCLick2">点我</button>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀'
+      },
+      methods: {
+        divClick() {
+          console.log('divClick');
+        },
+        btnClick() {
+          console.log('btnClick');
+        },
+
+        valueChange() {
+          console.log('valueChange')
+        },
+        valueChange1() {
+          console.log('valueChange1')
+        },
+        btnCLick2() {
+          console.log('btnCLick2')
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

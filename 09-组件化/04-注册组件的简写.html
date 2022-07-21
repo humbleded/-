@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+        <div id="app">
+            <!--使用组件-->
+            <cnp></cnp>
+        </div>
+
+
+        <script>
+            // //    1.创建组件构造器
+            // const cnpC = Vue.extend({
+            //     template:
+            //         `<div>
+            //     <h2>标题</h2>
+            //     <p>内容</p>              
+            //     </div>`
+            // })
+
+            // // 2.注册组件(全局组件:意味着可以在所有的Vue实例下使用)
+            // Vue.component('cpn', cnpC)
+
+            //全局组件
+            // Vue.component('cpn', {
+            //     template:
+            //         `<div>
+            //     <h2>标题</h2>
+            //     <p>内容</p>              
+            //     </div>`
+            // })
+
+
+            //组件
+            const cnp={
+                template:
+                            ` <div>
+                <h2>标题</h2>
+                <p>内容</p>              
+                </div> `
+            }
+
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    message: '你好呀'
+                },
+                methods: {},
+                components: {
+                    cnp
+                }
+            }) 
+
+        </script>
+
+    </body>
+
+</html>

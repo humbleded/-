@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" :placeholder="message1" v-model="message">
+        <h2>{{message}}</h2>
+
+        <!-- <textarea v-model="message"></textarea>
+        <p>输入的内容是:{{message}}</p> -->
+
+        <!--
+                v-model 在内部为不同的输入元素使用不同的 property 并抛出不同的事件：
+
+                text 和 textarea 元素使用 value property 和 input 事件；
+                checkbox 和 radio 使用 checked property 和 change 事件；
+                select 字段将 value 作为 prop 并将 change 作为事件。
+
+            -->
+
+
+
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好',
+                message1: 'nihao'
+            },
+            methods: {},
+        })
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="item in movies">{{item}}</li>
+        </ul>
+        <button @click="btnClick">点我</button>
+
+        
+    </div>
+
+
+
+    <!-- <script>
+        const app=new Vue({
+            el:'#app',
+            data:{
+                movies:['A','B','C']
+            },
+            methods:{
+                btnClick(){
+                    //这种方式修改数组的元素不是响应式的
+                    // this.movies[0]='D'
+
+                    this.movies.splice(0,1,'D');
+
+                    //重写的这些方法是响应试的
+                // updateData:function(){
+                //     //1.push方法
+                    // this.movies.push("D")
+
+                //     //2.pop方法
+                //     this.names.pop() 
+
+                //     //3.unshift方法
+                //     追加元素到开头
+                //     this.names.unshift('why','zs')
+
+                //     //4.shift方法
+                //     把第一个元素删除
+                //     this.names.shift()
+
+                //     //5.splice方法
+                //     //传递一个参数(index):将对应index,以及后面的所有数据删除掉
+                //      删除元素 替换元素 插入元素
+                    // this.movies.splice(1,1,'E')
+
+                //     //6.sort排序数据
+                    // this.movies.sort()
+
+                //     //7.reverse反转数据
+                    // this.movies.reverse()
+
+                // }
+                }
+            },
+        })
+
+
+    </script> -->
+
+
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--
+        注意当点击按钮时，每个组件都会各自独立维护它的 count。因为你每用一次组件，就会有一个它的新实例被创建。
+
+    -->
+
+
+    <!--data 必须是一个函数
+            当我们定义这个 <button-counter> 组件时，你可能会发现它的 data 并不是像这样直接提供一个对象：
+                取而代之的是，一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝：
+                如果 Vue 没有这条规则，点击一个按钮就可能会像如下代码一样影响到其它所有实例：
+    -->
+
+
+
+
+    <div id="app">
+        <cnp></cnp>
+        <cnp></cnp>
+    </div>
+
+    <!--cnp的模板-->
+    <template id="cpn">
+        <div>
+            <h2>当前计数:{{counter}}</h2>
+            <button @click="add">+</button>
+            <button @click="sub">-</button>
+        </div>
+    </template>
+    <script>
+
+        const cnp = {
+            template: '#cpn',
+            data() {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                add() {
+                    this.counter++;
+                },
+                sub() {
+                    this.counter--;
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {},
+            components: {
+                cnp
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--vue的模板-->
+  <div id="app">
+    <!-- <cnp></cnp> -->
+    <cnp2></cnp2>
+  </div>
+
+  <!--cnp的模板-->
+  <template id="cnp">
+    <div>
+        <h2>{{abc}}</h2>
+  </div>
+  </template>
+
+  <!--cnp2的模板-->
+  <template id="cnp2">
+    <div>
+        <h2>我是cnp2组件</h2>
+        <p>我是cnp2组件的内容</p>
+        <cnp></cnp>
+  </div>
+  </template>
+
+
+
+  <script>
+    //1.注册第一个组件
+    //cnp是cnp2的子组件
+    const cnp={
+        template:'#cnp',
+        data(){
+            return {
+                abc:'你在说什么'
+            }
+        }
+    }
+
+    //2.注册第二个组件
+    //cnp2是cnp的父组件
+    const cnp2={
+        template:'#cnp2',
+        components:{
+            cnp
+        }
+    }
+
+    //根组件
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀'
+      },
+      methods: {},
+
+      components:{
+        cnp2
+      }
+    })
+  </script>
+
+</body>
+
+</html>

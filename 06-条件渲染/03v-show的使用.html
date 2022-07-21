@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- v-if修饰的元素条件不成立的时候会移除掉 -->
+    <h2 v-if="isShow" class="aaa">{{message}}</h2>
+    <!-- v-show条件不成立会添加个行内样式:display:none -->
+    <h2 v-show="isShow" class="bbb">{{message}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        isShow: false
+      },
+      methods: {},
+    })
+  </script>
+
+</body>
+
+</html>

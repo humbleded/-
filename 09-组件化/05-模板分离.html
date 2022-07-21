@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <body>
+
+        <div id="app">
+            <!--使用组件-->
+            <cnp></cnp>
+        </div>
+
+        <template id="cpn">
+            <div>
+                <h2>{{title}}</h2>
+                <p>内容</p>
+            </div>
+        </template>
+
+        <!-- <script type="text/x-template" id="cpn">
+            <div>
+                <h2>标题</h2>
+                <p>内容</p>
+            </div>
+        </script> -->
+
+        <script>
+
+            //组件
+            //组件数据的存放
+            //组件对象也有一个data属性(也可以有methods等属性,下面我们有用到)
+            //只是这个data属性必须是一个函数
+            //而且这个函数返回一个对象,对象内部保存着数据
+            const cnp = {
+                template: '#cpn',
+                data() {
+                    return {
+                        title: '你好呀'
+                    }
+                }
+            }
+
+            const app = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods: {},
+                components: {
+                    cnp
+                }
+            })
+
+        </script>
+
+    </body>
+
+</html>

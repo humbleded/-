@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <body>
+    <!--
+            组件的试用分成三个步骤:
+             1.创建组件构造器
+             2.注册组件
+             3.使用组件
+
+          -->
+    <div id="app">
+      <!-- <div>
+        <h2>我是标题</h2>
+        <p>我是内容</p>
+      </div> -->
+      <!--3.使用组件-->
+      <my-cpn></my-cpn>
+      <my-cpn></my-cpn>
+      <my-cpn></my-cpn>
+    </div>
+
+    <script>
+      // 1.创建组件构造器
+      const cnpC = Vue.extend({
+        template:  //自定义模板 该模板就是在使用到组件的地方,要显示的HTML代码
+          `<div>
+        <h2>我是标题</h2>
+        <p>我是内容</p>
+      </div>`
+      })
+      // 2.注册组件
+      // Vue.component('组件的名字',组件构造器)
+      Vue.component('my-cpn',cnpC)
+
+
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: '你好呀'
+        },
+        methods: {},
+      })
+    </script>
+
+  </body>
+
+</html>

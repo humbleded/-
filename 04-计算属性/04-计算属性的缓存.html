@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- <h2>{{getfullname()}}</h2>
+    <h2>{{getfullname()}}</h2>
+    <h2>{{getfullname()}}</h2>
+    <h2>{{getfullname()}}</h2> -->
+    <h2>{{fullname}}</h2>
+    <h2>{{fullname}}</h2>
+    <h2>{{fullname}}</h2>
+    <h2>{{fullname}}</h2>
+
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        firstname: 'kobe',
+        lastname: 'bryant'
+      },
+      // 计算属性是有缓存的
+      computed: {
+        fullname() {
+          console.log('fullname--computed');
+          return this.firstname + " " + this.lastname
+        }
+      },
+      methods: {
+        getfullname() {
+          console.log("getfullname--methods");
+          return this.firstname + " " + this.lastname
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <h2 v-if="isShow">{{message}}</h2>
+    <h2 v-else>isShow为false的时候显示</h2>
+
+    <h2 v-if="score > 90">优秀</h2>
+    <h2 v-else-if="score > 80">良好</h2>
+    <h2 v-else-if="score > 60">及格</h2>
+    <h2 v-else>不及格</h2>
+
+    <!-- <h2>{{showMessage()}}</h2> -->
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        isShow: true,
+        score: 91
+      },
+      methods: {
+        showMessage() {
+          // 判断 >90 优秀
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

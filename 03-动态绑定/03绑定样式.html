@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    /* .a {
+      background: red;
+    } */
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 对象写法 -->
+    <!-- <h2 v-bind:style="{key(css属性名):value(属性值)}">{{message}}</h2> -->
+    <!-- <h2 v-bind:style="{background:'red','font-size':'50px'}">{{message}}</h2> -->
+    <!-- <h2 v-bind:style="{background:'red',fontSize:'50px'}">{{message}}</h2> -->
+    <!-- <h2 v-bind:style="{background:currentColor,fontSize:currentSzie + 'px'}">{{message}}</h2> -->
+    <!-- <h2 v-bind:style="getStyles()">{{message}}</h2> -->
+
+    <!-- 数组写法 -->
+
+    <!-- <h2 v-bind:style="[{background:'red'},{fontSize:'100px'}]">{{message}}</h2> -->
+    <h2 v-bind:style="[fonalColor,{fontSize:'100px'}]">{{message}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        currentColor: 'blue',
+        currentSzie: 50,
+        fonalColor: {
+          background: 'red'
+        },
+      },
+      methods: {
+        getStyles() {
+          return {
+            background: this.currentColor,
+            fontSize: this.currentSzie + 'px'
+          }
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

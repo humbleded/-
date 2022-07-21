@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- <h2 class="active">{{message}}</h2> -->
+    <!-- 绑定类 -->
+    <!-- 对象写法 -->
+    <!-- <h2 v-bind:class="{key:boolean,key:boolean}">{{message}}</h2> -->
+    <!-- <h2 v-bind:class="{active:isActive,line:isLine}" class="aaa">{{message}}</h2> -->
+    <!-- <h2 v-bind:class="getStyles()" class="aaa">{{message}}</h2> -->
+
+    <!-- 数组写法 -->
+    <!-- <h2 v-bind:class="['active']" class="aaa">{{message}}</h2>
+    <h2 v-bind:class="['active','line']" class="aaa">{{message}}</h2> -->
+    <h2 v-bind:class="[activeName,'line']" class="aaa">{{message}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好呀',
+        isActive: true,
+        isLine: true,
+        activeName: 'active'
+      },
+      methods: {
+        getStyles() {
+          return {
+            active: this.isActive,
+            line: this.$data.isLine
+          }
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

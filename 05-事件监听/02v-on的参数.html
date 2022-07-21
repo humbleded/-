@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- 如果不需要传递参数,()可以省略 -->
+    <!-- <button @click="btnClick1">按钮1</button>
+    <button @click="btnClick2()">按钮2</button> -->
+    <!--!!!! 省略了(),如果方法本身中有一个参数，那么会默认将原生事件event参数传递进去-->
+    <!-- <button @click="btnClick1">按钮1</button>
+    <button @click="btnClick2()">按钮2</button> -->
+    <!-- $event -->
+    <button @click="btnClick2('今天天气真好呀!!',$event)">按钮2</button>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        btnClick1(event) {
+          console.log('btnClick1', event);
+        },
+        btnClick2(aaa, bbb) {
+          console.log('btnClick2', aaa, bbb);
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>
