@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--父组件的模板-->
+    <div id="app">
+        <!-- <cpn @cpnclick="divClick($event)"></cpn> -->
+        <!--默认取到event-->
+        <!--通过v-on来监听子组件事件-->
+        <cpn @cpnclick="divClick"></cpn>  
+    </div>
+
+    <!--子组件的模板-->
+    <template id="cpn1">
+        <div>
+            <button v-for="item in categories" @click="itemClick(item.id)">{{item.name+' '+item.id}}</button>
+        </div>
+    </template>
+
+    <script>
+
+
+        //父组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+            },
+            methods: {
+                divClick(cateId,a){
+                    console.log('divClick',cateId,event);
+                    //ajax...
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn1',
+                    data() {
+                        return {
+                            // categories: ['电脑办公', '男装', '家具电器', '女装'],
+                            categories: [{
+                                id: 1,
+                                name: '电脑办公'
+                            },
+                            {
+                                id: 2,
+                                name: '男装'
+                            },
+                            {
+                                id: 3,
+                                name: '家具电器'
+                            },
+                            {
+                                id: 4,
+                                name: '女装'
+                            }]
+                        }
+                    },
+                    methods:{
+                        itemClick(itemId){
+                            // console.log('itemClick',itemId);
+                            //将分类的id传递给父组件
+                            //发射事件(触发事件)
+                            // this.$emit('event-name', param);
+                            this.$emit('cpnclick',itemId)
+                            
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
