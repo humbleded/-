@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--
+        1.插槽的使用<slot></slot>
+        2.默认值:<slot><button>点我</button></slot>
+        3.如果传的是多个标签会整体替换
+    -->
+    <div id="app">
+        <cpn>
+            <p>内容</p>
+        </cpn>
+        <cpn><button>点我</button></cpn>
+        <cpn>
+            <i>内容</i>
+            <div>内容11111</div>
+        </cpn>
+        <!-- <cpn></cpn>  
+        <cpn></cpn>  
+        <cpn></cpn>   -->
+
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>标题</h2>
+            <!-- <p>内容</p> -->
+            <slot><button>点我</button></slot> 
+        </div>
+    </template>
+
+
+
+    <script>
+
+        const cpn = {
+            template: '#cpn',
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好呀'
+            },
+            methods: {},
+            components: {
+                cpn
+            }
+        })
+    </script>
+
+</body>
+
+</html>

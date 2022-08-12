@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <cpn>
+        <!-- v=slot:left 等价于 #left  语法糖写法 -->
+        <template #left>
+            <button>返回</button>
+        </template>        
+    </cpn>
+    <cpn>
+        <template v-slot:center>
+            <span>中间</span>
+        </template>        
+    </cpn>
+    <cpn>
+        <template v-slot:right>
+            <button>确定</button>
+        </template>        
+    </cpn>
+    </div>
+
+    <template id="cpn1">
+        <div>
+          <!-- <slot><button>返回</button></slot>  
+           <slot><span>标题</span></slot> 
+            <slot><button>确定</button></slot> -->
+         <slot name="left"><span>左边</span></slot> 
+          <slot name="center"><span>中间</span></slot>
+           <slot name="right"><span>右边</span></slot>
+        </div>
+    </template>
+
+
+    <script>
+        const cpn={
+            template:'#cpn1',
+        }
+
+        const app=new Vue({
+            el:'#app',
+            data:{
+                message:'你好',
+            },
+            components: {
+               cpn
+            }
+        })
+
+    </script>
+
+
+    
+</body>
+</html>

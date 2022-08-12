@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        vue自定义指令
+            + 在工作中,vue内置的指令无法满足我们的需求,所以我们可以封装一些自己定义的指令.
+            + 全局自定义指令
+                => Vue.directive(指令名称,配置项)   配置项中写我们指令逻辑
+            + 局部自定义指令
+                => directives这个配置项来定义我们的指令的
+                => 语法: directive: {指令名称: 配置项}
+    -->
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <!--需求: 我们想着封装一个聚焦的自定义指令-->
+        <!-- <input v-focus type="text"> -->
+        <input v-foc type="text" v-if="b" v-model="message">
+        <!--案例2.我们仿照v-on实现一个v-myon-->
+        <button v-on:click="handerclick">点击</button>
+        <!--自己指令的v-myon 替换了 v-on-->
+        <button v-myon:click="handerclick">点击</button>
+    </div>
+
+    <script>
+        //实现一个v-myon的自定义指令,模仿v-on
+        Vue.directive('myon',{
+            inserted:(el,binding)=>{
+                console.log('binding',binding);//能获取事件类型,执行函数,指令名称
+                el.addEventListener(binding.arg,binding.value) //添加自定义事件,把当前执行函数添加到元素上
+            }
+        })
+        //全局指令聚焦效果
+        Vue.directive('foc', {
+            bind: (el) => { //bind这个生命周期,指令开始就绑定上去. 当前还没插入到挂载点
+                console.log('bind');
+                console.log(el);
+                console.log(el.parentNode); //null
+            },
+            inserted: (el) => {  //inserted指令的生命周期,在当前元素渲染完成才执行这个指令
+                //el就是当前使用指令的元素
+                // el.focus()  //当前大括号就是我们指令逻辑,聚焦
+                console.log('inserted');
+                console.log(el);
+                console.log(el.parentNode);
+            },
+            update: (el) => { //数据有更新,当前这个指令就执行
+                console.log('update');
+                console.log(el);
+                console.log(el.parentNode);
+            },
+            unbind: (el) => { //在元素销毁的时候就会执行
+                console.log('unbind');
+                console.log(el);
+                console.log(el.parentNode);
+            },
+        }) //v-focus这个指令,去除v-就是我们的指令名称
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello word',
+                b:true,
+            },
+            // directives: {  //directives局部指令写在组件内部的, 
+            //     'foc': { //foc 是我们指令名称  省略v-
+            //         inserted: (el) => { //inserted 在当前元素渲染完成才执行这个指令
+            //             el.focus(); //大括号就是指令的逻辑, 聚焦
+            //         },
+            //     }
+            // }
+            methods: {
+                handerclick(){
+                    console.log("点击了");
+                }
+            },
+        })
+
+    </script>
+
+</body>
+
+</html>

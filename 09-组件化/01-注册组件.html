@@ -41,7 +41,7 @@
       })
       // 2.注册组件
       // Vue.component('组件的名字',组件构造器)
-      Vue.component('my-cpn',cnpC)
+      Vue.component('my-cpn', cnpC)
 
 
 
@@ -53,6 +53,38 @@
         methods: {},
       })
     </script>
+
+
+    <!-- <div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn1">
+  <div>
+      你好
+  </div>
+</template>
+
+
+<script>
+  const cpn2={
+      template:'#cpn1',
+  }
+
+  const app=new Vue({
+      el:'#app',
+      data:{
+          message:'你好',
+      },
+      components: {
+         cpn:cpn2
+      }
+  })
+
+</script> -->
+
+
+
 
   </body>
 

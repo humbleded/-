@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        Vue生命周期
+            + 面试题: 说一下vue的生命周期?
+            + 生命周期是指组件从创建到最终销毁的整个过程.在过程中的某个自执行函数,我们理解时机
+            + 挂载阶段(组件从开始到创建完成)
+                -> beforeCreate created beforeMount mouted
+              更新阶段(组件数据改变,组件从新渲染)
+                -> beforeUpdate updated
+              销毁阶段(组件从开始销毁到最终删除它)
+                -> beforeDestroy destroyed
+    -->
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <input type="text" v-model='message'>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello word'
+            },
+            methods: {
+                //vue中我们写的数据变量和函数默认是挂载在this下面的
+                addhander(){}
+            },
+            //挂载阶段, 这个组件从开始创建到创建完成
+            beforeCreate() {
+                // 这个自执行函数,在组件创建之前就会执行
+                console.group('创建前')
+                console.log(this.$data);//this.$data 就是获取当前data  undefined
+                console.log(this.$el); //this.$el 获取当前根元素       undefined
+                console.groupEnd()
+            },
+            created() {
+                // 在组件创建之后就会执行这个函数
+                console.group('创建后')
+                console.log(this.$data);//this.$data 就是获取当前data  已经可以获取data
+                console.log(this.$el); //this.$el 获取当前根元素       undefined
+                console.groupEnd()
+            },
+            beforeMount() {
+                //当前组件还没有挂载到我们的页面上
+                console.group('挂载前')
+                console.log(this.$data);//this.$data 就是获取当前data  已经可以获取data
+                console.log(this.$el.innerText); //this.$el 获取当前根元素       获取到了页面,但是还没有解析
+                console.groupEnd()
+            },
+            mounted() {
+                //当前组件已经挂载到我们的页面上了,已经渲染完成
+                console.group('挂载后,重要,发送ajax')
+                console.log(this.$data);//this.$data 就是获取当前data  已经可以获取data
+                console.log(this.$el.innerText); //this.$el 获取当前根元素       获取到了页面
+                console.groupEnd()
+                console.log(this);
+            },
+            beforeUpdate() {
+                //当前组件更新之前,准备更新
+                console.group('更新前')
+                console.log(this.$data);//this.$data 就是获取当前data  已经可以获取data
+                console.log(this.$el.innerText); //this.$el 获取当前根元素       获取到了页面
+                console.groupEnd()
+            },
+            updated() {
+                //当前组件已经更新完成,更新之后
+                console.group('更新后')
+                console.log(this.$data);//this.$data 就是获取当前data  已经可以获取data
+                console.log(this.$el.innerText); //this.$el 获取当前根元素       获取到了页面
+                console.groupEnd()
+            },
+        })
+    </script>
+
+
+</body>
+
+</html>

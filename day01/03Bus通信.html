@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        组件
+            + template必须有根元素,有唯一的一个根元素
+            + data必须时函数,主要是为了在被多次复用的时候,保证data是独立的一个数据拷贝.
+            + 组件的命名,html中我们支持短横线,在工程化中组件应该是大驼峰.
+        
+        事件总线通信-bus通信
+            +场景: 适用于兄弟间通信,或者毫无关系的俩组件通信.
+            +步骤: 1.定义一个全局的事件中心
+        父子通信 [重要]
+            +父-子通信,第一步父组件中子组件占位符通过动态属性绑定某个值.
+                        第二步子组件中通过props来获取父组件传递的值
+            
+            +子-父通信,第一步子组件通过this.$emit(自定义事件名,参数)方式给父组件传递事件,
+                        第二步父组件中子组件占位符通过v-on:自定义事件名='执行函数'来接收子组件的事件和参数.
+        ref
+            + 获取元素或者获取子组件实例.
+            + 例如: <p ref='myp'> vue就把当前元素添加到this.$refs这个对象中,我们就可以通过this.$refs.myp拿到元素
+            + 同理获取子组件也是
+        跨层级通信
+        vuex最后
+    -->
+    <div id="app">
+        <p>{{ message }}</p>
+        <!--只要在当前模板中出现了组件的占位符,这个占位符组件就是当前组件的子组件-->
+        <!--组件1 alert-child-->
+        <alert-child></alert-child>
+        <!--组件2 my-child-->
+        <my-child></my-child>
+    </div>
+    <script>
+        //1.事件中心
+        var eventBus = new Vue()  //vue中一般使用vue实例来作为事件中心
+        //2.需求: alert-child组件传递一个值 name:'小红'给组件2 my-child
+        //2.被调用者组件,添加自定义事件  eventBus.$on(自定义事件名,执行函数)
+        //3.调用者组件,通过eventBus.$emit(自定义事件名,参数)
+        var AlertChild = {
+            template: `<div @click='handerclick'>alert-child</div>`,
+            methods: {
+                handerclick() {
+                    eventBus.$emit('transfername', '小红')
+                }
+            },
+        }
+
+        var myChild = {
+            template: `<p>my-child,{{ name }}</p>`,
+            data() {
+                return {
+                    name: '小明'
+                }
+            },
+            mounted() {  //挂载后
+                //在当前组件渲染完成之后就会执行当前这个函数,看成自执行函数
+                eventBus.$on('transfername', (val) => {
+                    this.name = val  //获取传递的值,赋值给name
+                })
+            },
+        }
+
+        Vue.component('alert-child', AlertChild) //全局组件 参数1 组件名称, 参数2 我们的配置项
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello word'
+            },
+            components: {
+                'my-child': myChild   //局部组件  key就是组件名称,value就是配置项
+            }
+        })
+    </script>
+</body>
+
+</html>

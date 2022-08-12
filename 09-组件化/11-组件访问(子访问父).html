@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <cpn2></cpn2>
+    </div>
+
+
+    <!--cpn1的模板-->
+    <template id="cpn1">
+        <div>
+            <!-- <h2>我是cpn1</h2> -->
+            <!-- <h2>{{aaa}}</h2> -->
+            <h2>我是组件cpn1</h2>
+            <button @click="btnClick">点我</button>
+            <!-- <button @click="btnClick(aaa)">点我</button> -->
+        </div>
+    </template>
+
+    <!--cpn2的模板-->
+    <template id="cpn2">
+        <div>
+            我是组件cpn2
+            <!-- <cpn1 :aaa="name"></cpn1> -->
+            <cpn1></cpn1>
+        </div>
+    </template>
+ 
+    <script>
+
+        //$parent  $root
+
+        //创建子组件
+        const cpn1 = {
+            template: '#cpn1',
+            methods: {
+                btnClick(cpn2) {
+                    // console.log('btnClick',cpn2.data().name);
+                    // console.log('btnClick',cpn2);
+                    // console.log(this.aaa);
+                    //直接访问父组件
+                //   console.log(this.$parent.name);   
+                console.log(this.$root);             
+                // console.log(this.$root.$children[0].name);             
+                }
+            },
+            props: {
+                aaa:String
+            }
+        }
+
+        //创建父组件
+        const cpn2 = {
+            template: '#cpn2',
+            data() {
+                return {
+                    name: '我是cpn2组件'
+                }
+            },
+            components: {
+                cpn1
+            },
+        }
+
+        //根组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好呀'
+            },
+            methods: {},
+            components: {
+                cpn2
+            }
+        })
+    </script>
+
+</body>
+
+</html>

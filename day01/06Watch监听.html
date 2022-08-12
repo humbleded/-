@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        watch监听
+            + 作用: 监听data中数据变化,只要数据发生变化,watch函数就执行
+            + 语法: 监听基本数据类型
+                =>watch:{
+                    监听的数据变量:执行函数
+                }
+            + 语法: 监听引用数据类型
+                =>watch:{
+                    监听引用数据类型:{
+                        handler:执行函数,
+                        deep:true //开启深度监听
+                    }
+                }
+    -->
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <input type="text" v-model="message">
+        <br />
+        <p>{{ JSON.stringify(arr) }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello word',
+                arr: [
+                    { name: '小明' },
+                    { name: '小黑' },
+                ]
+            },
+            //监听message的变化,只要他发生改变,我们就执行一个函数
+            watch: {
+                message: function (newVal, oldVal) {
+                    console.log('newVal', newVal);
+                    console.log('oldVal', oldVal);
+                    console.log('message发生变化了');
+                },
+                arr: {
+                    handler: function () {
+                        console.log('arr发生改变了');
+                    },
+                    deep: true, //深度监听
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>

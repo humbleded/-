@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        跨层级通信
+            + 例如: a 组件包含b组件,b组建包含c组件,a给c传递数据,就叫跨层级
+            + 祖先组件通过provide这个配置项给后代发送数据
+            + 后代通过inject这个配置项来获取数据并注入到当前组件中.类似props
+    -->
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <!--使用a组件-->
+        <achild></achild>
+    </div>
+
+    <script>
+        //需求: 把a组件中的数据传递给c组件
+        //a组件
+        Vue.component('achild',{
+            template:`<div>组件a,<bchild></bchild></div>`,
+            provide:{   //provide配置项给后代传递数据用的
+                name:'小明'  
+            }
+        });
+        //b组件
+        Vue.component('bchild',{
+            template:`<div>组件b,<cchild></cchild<</div>`,
+        });
+        //c组件
+        Vue.component('cchild',{
+            template:`<div>组件c,获取祖先组件的值是:{{ name }}</div>`,
+            inject:['name']
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                message:'hello',
+            },
+        })
+    </script>
+</body>
+</html>

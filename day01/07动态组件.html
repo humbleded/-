@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!--
+        vue动态组件
+            + 多个而组建通过统一的一个挂载点来渲染组件
+            + 动态组件的切换会触发组件的创建和销毁,严重浪费性能,可以搭配keep-alive来使用
+            + keep-alive用来缓存组件用的.默认情况下缓存闭合标签中的所有组件
+                => include 包含, 属性值正则匹配或者名称等于哪个组件,哪个组件就缓存
+                => exclude 排除, 属性值正则匹配或者名称等于哪个组件,哪个组件就不缓存
+                两个钩子函数
+                => deactivated 未激活  就当前是隐藏,缓存状态
+                => activated 激活  当前处于显示状态
+    -->
+    <div id="app">
+        <p>{{ message }}</p>
+        <!--alert-child组件,静态组件-->
+        <alert-child></alert-child>
+        <!--动态组件,使用的是vue提供的内置标签 component ,is属性后面放组件名称-->
+        <!-- <component is="alert-child"></component> -->
+        <!-- <component :is="com"></component> -->
+        <button @click="changehander">切换</button>
+        <!-- <keep-alive include="alert-child">
+            <component :is="com"></component>
+        </keep-alive> -->
+
+        <keep-alive>
+            <component :is="com"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        //定义一个全局alert-child组件
+        Vue.component('alert-child', {
+            template: `<p>我是一个组件</p>`,
+            mounted() {
+                console.log('alert-child组件创建了')
+            },
+            beforeDestroy() {
+                console.log('alert-child组件销毁了')
+            },
+            activated() {
+                console.log('alert-child激活中');
+            },
+            deactivated() {
+                console.log('alert-child未激活');
+            },
+        })
+        //定义一个全局my-child组件
+        Vue.component('my-child', {
+            template: `<p>我是另一个组件</p>`,
+            mounted() {
+                console.log('my-child组件创建了')
+            },
+            beforeDestroy() {
+                console.log('my-child组件销毁了')
+            },
+            activated() {
+                console.log('my-child激活中');
+            },
+            deactivated() {
+                console.log('my-child未激活');
+            },
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello world',
+                com:'alert-child',
+            },
+            methods:{
+                changehander(){
+                    this.com=this.com=='alert-child' ? 'my-child' : 'alert-child'
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

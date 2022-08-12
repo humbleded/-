@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <!--
+        回顾
+            1.插值表达式
+            =>语法:{{}} 变量,函数调用,表达式(三元,链接且,链接或)
+            2.指令
+            => v-text/v-html
+                ->vue通过使用innerText或者innerHTML把字符串写入标签内部
+            => v-model
+                -> 双向数据绑定,只要碰到form表单就首先考虑使用v-model来获取值,其次ref来获取表单的值
+            => v-show/v-if
+                -> v-show和v-if都可以控制元素的显示和隐藏
+                -> 不同点:v-if条件会控制元素的渲染或销毁,v-show不管你显示还是隐藏,节点是已经渲染的,只是通过
+                          样式的方式来控制元素显示或隐藏
+            => v-on
+                -> 语法:v-on:事件类型='执行的函数' 简写 @click='handerclick'
+            => bind
+                -> 动态属性,vue提供的可以把属性值识别成变量
+                -> 语法: v-bind:hello='myactive'
+                -> vue在渲染模板的时候就把这个属性的值识别成变量,他就会去找这个变量的值,然后填充到这个属性后面
+            => v-for
+                -> 数组循环语法: v-for='(item,index) in arr' :key='item.id'
+                -> 解释: 随着循环,item就是每一个元素,index就是每一个元素的下标, arr就是循环的数组,
+                         在循环时就加key,一般我们使用数据中唯一的值来作为key
+                -> 对象的循环语法: v-for='(val,key,index) in obj' :key='key'
+                -> 解释: 随着循环,val就是对象的属性值,key就是属性,index就是下标,obj就是循环对象
+            => v-once
+                -> 当前数据只渲染第一次,然后解除响应式
+            => v-pre
+                -> 跳过当前渲染 跳过这个元素和它子元素的编译过程
+            => v-cloak
+                ->  主要解决插值表达式的白屏问题,一般放在我们根元素上  <div v-cloak id='app'></div>
+    -->
+</body>
+
+</html>

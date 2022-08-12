@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>
+        <cpn>
+            <template v-slot:default="slotProps">
+                <!-- <span v-for="item in slotProps.names">{{item}}</span> -->
+                <span>{{slotProps.snames.join("-")}}</span>
+            </template>
+        </cpn>
+        <cpn>
+            <template v-slot:default="slotProps">
+            <!-- <template slot-scope="slotProps"> 已废弃的写法 -->
+                <span>{{slotProps.snames.join("*")}}</span>
+            </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <slot :snames="names">
+                <ul>
+                    <li v-for="item in names">{{item}}</li>
+                    <!-- <li v-for="item in names">{{item}}</li> -->
+                </ul>
+            </slot>
+        </div>
+    </template>
+
+
+    <script>
+        const cpn = {
+            template: '#cpn',
+            data() {
+                return {
+                    names: ['java', 'c', 'switf', 'python', 'go', 'js', 'ts', 'c#']
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好',
+            },
+            components: {
+                cpn
+            }
+        })
+
+    </script>
+
+
+
+
+</body>
+
+</html>

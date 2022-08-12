@@ -11,6 +11,15 @@
 
 <body>
 
+        <!--
+            父组件访问子组件:使用$children或$refs
+            子组件访问父组件:使用$parent
+
+            this.$children是一个数组类型,它包含所有子组件对象
+            但是当子组件过多,我们需要拿到其中一个时,往往不能确定它的索引值,甚至还可能发生变化
+            当我们向明确获取其中一个特定的组件,这个时候可以使用$refs
+        -->
+
     <div id="app">
         <cpn></cpn>
         <cpn ref="aaa"></cpn>
@@ -41,7 +50,6 @@
                     //this.$children
                     // console.log(this.$children[0].message);
                     console.log(this.$refs.aaa.message);
-
                 },
             },
             components: {
@@ -49,7 +57,7 @@
                     template: '#cpn1',
                     data() {
                         return {
-                            message: '我是子组件'
+                            message: '我是子组件',
                         }
                     },
                 }

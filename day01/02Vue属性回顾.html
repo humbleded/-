@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+        vue常见属性
+            1.computed  计算属性
+                => 在计算属性中,我们一般书写函数的形式,并且这个函数有返回值,但是我们要把他当做数据变量来使用
+                => 特征:
+                    ->缓存性:这个计算属性被多次被调用的使用,只要依赖的参数不变,只有第一次才执行,后面直接取缓存
+                            中函数的返回值.
+                    ->依赖性:只要当前计算属性依赖的参数发生变化,当前函数就会重新执行
+            2.过滤器
+                => 日期转换,vue3废弃了过滤器,我们可以使用普通函数来取代
+                => 语法: 全局过滤器和局部过滤器
+                    -> Vue.filter(过滤器名,回调函数) 全局
+                    -> filters:{ 过滤器名: 函数 }   局部
+            
+    -->
+</body>
+
+</html>
